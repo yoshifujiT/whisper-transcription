@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import CopyButton from './CopyButton';
 
 export default function TranscriptionUploader() {
   const [isLoading, setIsLoading] = useState(false);
@@ -96,7 +97,10 @@ export default function TranscriptionUploader() {
       {/* 結果表示 */}
       {result && (
         <div className="mt-6">
-          <h3 className="text-lg font-medium mb-3 text-gray-800">文字起こし結果</h3>
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-lg font-medium text-gray-800">文字起こし結果</h3>
+            <CopyButton text={result} />
+          </div>
           <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
             <div className="max-h-[500px] overflow-y-auto prose prose-sm">
               {result.split('\n').map((paragraph, index) => (
