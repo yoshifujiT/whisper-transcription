@@ -3,25 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 4231",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4231",
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-dropzone": "^5.1.0",
+    "next": "15.1.5",
+    "openai": "^4.79.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.5"
+    "react-dropzone": "^14.3.5"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.5",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
