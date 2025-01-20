@@ -28,7 +28,9 @@ export default function TranscriptionDetail() {
       }
     };
 
-    fetchTranscription();
+    if (params.id) {
+      fetchTranscription();
+    }
   }, [params.id]);
 
   const handleCopy = async () => {
@@ -53,20 +55,20 @@ export default function TranscriptionDetail() {
 
   if (error || !transcription) {
     return (
-      <div className="bg-red-50 text-red-700 p-4 rounded-lg">
+      <div className="bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200 p-4 rounded-lg">
         {error || 'データが見つかりませんでした'}
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             {transcription.filename}
           </h1>
-          <div className="flex items-center mt-2 text-gray-500">
+          <div className="flex items-center mt-2 text-gray-500 dark:text-gray-400">
             <Calendar className="h-4 w-4 mr-1" />
             {new Date(transcription.createdAt).toLocaleString('ja-JP')}
           </div>
@@ -76,8 +78,8 @@ export default function TranscriptionDetail() {
           className={`
             inline-flex items-center px-3 py-1.5 rounded
             ${copied 
-              ? 'bg-green-100 text-green-700' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-100' 
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
             }
             transition-colors duration-200
           `}
@@ -95,9 +97,9 @@ export default function TranscriptionDetail() {
           )}
         </button>
       </div>
-      <div className="mt-6 prose max-w-none">
+      <div className="mt-6 prose dark:prose-invert max-w-none">
         {transcription.text.split('\n').map((paragraph, index) => (
-          <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+          <p key={index} className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             {paragraph}
           </p>
         ))}

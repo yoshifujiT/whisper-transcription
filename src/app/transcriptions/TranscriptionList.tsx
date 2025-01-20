@@ -39,7 +39,7 @@ export default function TranscriptionsList() {
 
   if (error) {
     return (
-      <div className="bg-red-50 text-red-700 p-4 rounded-lg">
+      <div className="bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200 p-4 rounded-lg">
         {error}
       </div>
     );
@@ -47,7 +47,7 @@ export default function TranscriptionsList() {
 
   if (transcriptions.length === 0) {
     return (
-      <div className="text-center text-gray-500 py-8">
+      <div className="text-center text-gray-500 dark:text-gray-400 py-8">
         文字起こしデータがありません
       </div>
     );
@@ -59,23 +59,23 @@ export default function TranscriptionsList() {
         <Link
           key={transcription.id}
           href={`/transcriptions/${transcription.id}`}
-          className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200"
+          className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md dark:shadow-gray-900/50 transition-all duration-200 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
         >
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-3">
-              <FileText className="h-5 w-5 text-blue-500" />
+              <FileText className="h-5 w-5 text-blue-500 dark:text-blue-400" />
               <div>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                   {transcription.filename}
                 </h2>
-                <div className="flex items-center mt-1 text-sm text-gray-500">
+                <div className="flex items-center mt-1 text-sm text-gray-500 dark:text-gray-400">
                   <Calendar className="h-4 w-4 mr-1" />
                   {new Date(transcription.createdAt).toLocaleString('ja-JP')}
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-4 text-gray-600 text-sm line-clamp-2">
+          <div className="mt-4 text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
             {transcription.text}
           </div>
         </Link>

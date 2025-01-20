@@ -3,12 +3,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 
+type Params = { params: { id: string } };
+
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: Params
 ) {
   try {
-    const id = params.id;
+    // params.idを使用する前にawaitする必要がある
+    const { id } = await Promise.resolve(params);
+    
     const filePath = path.join(
       process.cwd(),
       'transcriptions',
@@ -26,7 +30,7 @@ export async function GET(
       text: content
     });
   } catch (error) {
-    console.log(error)
+    console.error('Error fetching transcription:', error);
     return NextResponse.json(
       { error: 'Transcription not found' },
       { status: 404 }
